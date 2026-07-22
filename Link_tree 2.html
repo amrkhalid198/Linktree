@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Behind The Injury — Bulletproof Ankle</title>
+<meta name="description" content="تأهيل الإصابات الرياضية بمنهج مبني على الأدلة العلمية. برامج تأهيل، تقييم مجاني، ودليل تعافي مجاني.">
+<meta name="theme-color" content="#0C0E10">
+
+<!-- Fonts: brand pair (Cairo headings, Tajawal body). Limited weights for speed. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Tajawal:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BEHIND THE INJURY — Conversion Hub
+   Midnight Slate system. Single accent: Ember #E8663D.
+   ============================================================ */
+:root{
+  --bg:        #0C0E10;
+  --bg-raise:  #121518;   /* card surface */
+  --bg-raise-2:#171B1F;   /* hover surface */
+  --line:      rgba(237,235,231,.11);  /* alpha borders react to surfaces beneath */
+  --line-soft: rgba(237,235,231,.06);
+  --text:      #EDEBE7;   /* warm off-white, never pure white */
+  --text-2:    #A7ACB2;   /* secondary */
+  --text-3:    #6E747B;   /* tertiary / meta */
+  --ember:     #E8663D;
+  --ember-soft:#F0805C;   /* hover / text-on-dark accent */
+  --ember-ink: #23110A;   /* text on ember buttons */
+  --ember-tint:rgba(232,102,61,.07);
+  --radius:    18px;
+  --radius-sm: 12px;
+  --ease-out:  cubic-bezier(0.23, 1, 0.32, 1);
+  --font-head: 'Cairo', system-ui, sans-serif;
+  --font-body: 'Tajawal', system-ui, sans-serif;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+  min-height:100dvh;
+  /* Faint radial warmth behind the hero. One gradient, barely there. */
+  background-image:radial-gradient(560px 420px at 50% -80px, rgba(232,102,61,.055), transparent 70%);
+  background-repeat:no-repeat;
+}
+
+/* English mode: same family pair works for Latin; slightly tighter leading. */
+html[lang="en"] body{ line-height:1.6; }
+
+::selection{ background:rgba(232,102,61,.28); color:var(--text); }
+
+.wrap{
+  max-width:520px;
+  margin-inline:auto;
+  padding:0 20px calc(28px + env(safe-area-inset-bottom));
+  padding-top:calc(52px + env(safe-area-inset-top));
+}
+
+/* ---------- Language toggle (fixed, Apple-style segmented control) ---------- */
+.lang-bar{
+  position:fixed;
+  top:calc(16px + env(safe-area-inset-top));
+  right:20px;
+  z-index:100;
+}
+.lang-toggle{
+  position:relative;
+  display:inline-flex;
+  direction:ltr; /* lock button order: EN left, العربية right */
+  align-items:center;
+  gap:2px;
+  background:var(--bg-raise);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:3px;
+}
+/* Sliding pill indicator — ember highlight */
+.lang-pill{
+  position:absolute;
+  top:3px;
+  height:calc(100% - 6px);
+  background:rgba(232,102,61,.15);
+  border:1px solid rgba(232,102,61,.25);
+  border-radius:999px;
+  transition:left 280ms var(--ease-out), width 280ms var(--ease-out);
+  z-index:0;
+  pointer-events:none;
+}
+.lang-toggle button{
+  position:relative;
+  z-index:1;
+  font-family:var(--font-head);
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--text-3);
+  background:transparent;
+  border:0;
+  border-radius:999px;
+  padding:7px 14px;
+  cursor:pointer;
+  transition:color 200ms ease;
+}
+.lang-toggle button[aria-pressed="true"]{
+  color:var(--ember-soft);
+}
+.lang-toggle button:focus-visible{ outline:2px solid var(--ember); outline-offset:2px; }
+
+/* ---------- Hero ---------- */
+.hero{
+  text-align:center;
+  padding:26px 0 30px;
+}
+.avatar{
+  width:116px; height:116px;
+  margin-inline:auto;
+  border-radius:50%;
+  border:1px solid rgba(232,102,61,.3);
+  background:var(--bg-raise);
+  display:grid; place-items:center;
+  overflow:hidden;
+}
+.avatar img{
+  width:100%; height:100%;
+  object-fit:cover;
+}
+.hero h1{
+  font-family:var(--font-head);
+  font-size:27px;
+  font-weight:800;
+  line-height:1.35;
+  margin-top:18px;
+  text-wrap:balance;
+  /* Brand name is always Latin */
+  letter-spacing:-.015em;
+}
+
+.hero .value{
+  margin:14px auto 0;
+  max-width:38ch;
+  font-size:16.5px;
+  color:var(--text-2);
+}
+/* Creator identity — secondary to the brand */
+.hero .creator{
+  margin-top:8px;
+  font-size:12px;
+  color:var(--text-3);
+  font-family:var(--font-body);
+}
+.hero .cred{
+  margin-top:12px;
+  font-size:12.5px;
+  color:var(--text-3);
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+.hero .cred svg{ width:13px; height:13px; stroke:var(--text-3); }
+
+/* ---------- Product stack ---------- */
+/* Future cards: duplicate an <a class="card"> block inside .stack. Hierarchy
+   is controlled per-card (flagship class), not by position, so it scales. */
+.stack{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.card{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  background:var(--bg-raise);
+  border:1px solid var(--line-soft);
+  border-radius:var(--radius);
+  padding:22px 22px 20px;
+  box-shadow:inset 0 1px 0 rgba(237,235,231,.03);
+  transition:transform 200ms var(--ease-out),
+             border-color 200ms ease,
+             background-color 200ms ease,
+             box-shadow 200ms var(--ease-out);
+}
+.card:active{ transform:scale(.985); }
+.card:focus-visible{ outline:2px solid var(--ember); outline-offset:3px; }
+
+@media (hover:hover) and (pointer:fine){
+  .card:hover{
+    transform:translateY(-2px);
+    background:var(--bg-raise-2);
+    border-color:var(--line);
+    box-shadow:inset 0 1px 0 rgba(237,235,231,.05),
+               0 2px 6px -2px rgba(0,0,0,.4),
+               0 16px 36px -18px rgba(0,0,0,.55);
+  }
+  /* CTA already ember — hover just brightens arrow */
+  .card:hover .cta svg{ opacity:1; transform:translateX(4px); }
+  html[dir="rtl"] .card:hover .cta svg{ transform:translateX(-4px) scaleX(-1); }
+}
+
+.card-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.card-head .icon{
+  width:20px; height:20px;
+  flex-shrink:0;
+  stroke:var(--ember);
+  transition:stroke 200ms ease;
+}
+.card h2{
+  font-family:var(--font-head);
+  font-size:17px;
+  font-weight:700;
+  line-height:1.45;
+}
+html[lang="en"] .card h2{ line-height:1.25; }
+.card p{
+  margin-top:10px;
+  font-size:14.5px;
+  color:var(--text-2);
+  max-width:52ch;
+}
+.cta{
+  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--font-head);
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--ember-soft);
+  transition:color 200ms ease, transform 120ms var(--ease-out);
+}
+/* Soft press on all CTAs */
+.cta:active{ transform:scale(.97); }
+.cta svg{
+  width:15px; height:15px;
+  stroke:currentColor;
+  opacity:.7;
+  transition:opacity 200ms ease, transform 200ms var(--ease-out);
+}
+html[dir="rtl"] .cta svg{ transform:scaleX(-1); }
+
+/* ---------- Flagship card ---------- */
+.card.flagship{
+  background:linear-gradient(180deg, var(--ember-tint), transparent 65%), var(--bg-raise);
+  border-color:rgba(232,102,61,.32);
+  padding:25px 22px 24px;
+  margin-bottom:6px;
+  box-shadow:inset 0 1px 0 rgba(240,128,92,.08),
+             0 2px 8px -4px rgba(0,0,0,.4),
+             0 18px 44px -22px rgba(232,102,61,.18);
+}
+@media (hover:hover) and (pointer:fine){
+  .card.flagship:hover{
+    border-color:rgba(232,102,61,.5);
+    box-shadow:inset 0 1px 0 rgba(240,128,92,.1),
+               0 2px 8px -4px rgba(0,0,0,.4),
+               0 20px 48px -20px rgba(232,102,61,.26);
+  }
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:var(--font-head);
+  font-size:11px;
+  font-weight:700;
+  color:var(--ember-soft);
+  border:1px solid rgba(232,102,61,.35);
+  background:rgba(232,102,61,.08);
+  border-radius:999px;
+  padding:4px 11px;
+  margin-bottom:14px;
+}
+html[lang="en"] .badge{ text-transform:uppercase; letter-spacing:.09em; }
+.card.flagship .card-head .icon{ stroke:var(--ember-soft); width:22px; height:22px; }
+.card.flagship h2{
+  font-size:22px;
+  font-weight:800;
+  line-height:1.3;
+  /* Product name stays Latin in both languages */
+  letter-spacing:-.015em;
+}
+.card.flagship p{ font-size:15px; }
+.card.flagship .cta{
+  margin-top:18px;
+  display:flex;
+  width:100%;
+  justify-content:center;
+  background:var(--ember);
+  color:var(--ember-ink);
+  border-radius:var(--radius-sm);
+  padding:13px 20px;
+  font-size:14.5px;
+  transition:background-color 160ms ease, transform 120ms var(--ease-out);
+}
+.card.flagship:active .cta{ transform:scale(.97); }
+@media (hover:hover) and (pointer:fine){
+  .card.flagship:hover .cta{ background:var(--ember-soft); }
+}
+.card.flagship .cta svg{ opacity:1; }
+
+/* ---------- Section label ---------- */
+.section-label{
+  font-family:var(--font-head);
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--text-3);
+  text-align:center;
+  margin:44px 0 16px;
+}
+html[lang="en"] .section-label{ text-transform:uppercase; letter-spacing:.1em; }
+
+/* ---------- Connect ---------- */
+.connect{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+.connect a{
+  width:48px; height:48px;
+  display:grid; place-items:center;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--line-soft);
+  background:var(--bg-raise);
+  transition:transform 180ms var(--ease-out), border-color 180ms ease, background-color 180ms ease;
+}
+.connect a:active{ transform:scale(.94); }
+.connect a:focus-visible{ outline:2px solid var(--ember); outline-offset:2px; }
+.connect svg{
+  width:20px; height:20px;
+  stroke:var(--ember);
+  transition:stroke 180ms ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .connect a:hover{
+    transform:translateY(-2px);
+    border-color:var(--line);
+    background:var(--bg-raise-2);
+  }
+  .connect a:hover svg{ stroke:var(--ember-soft); }
+}
+
+/* ---------- Footer ---------- */
+footer{
+  margin-top:34px;
+  text-align:center;
+  font-size:11.5px;
+  color:var(--text-3);
+}
+footer .mark{
+  font-family:var(--font-head);
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--text-2);
+}
+
+/* ---------- Load reveal (stagger) ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(10px);
+  animation:rise 360ms var(--ease-out) forwards;
+}
+.d1{ animation-delay:50ms; }
+.d2{ animation-delay:100ms; }
+.d3{ animation-delay:150ms; }
+.d4{ animation-delay:200ms; }
+.d5{ animation-delay:250ms; }
+@keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+
+/* ---------- Language transition ---------- */
+.lang-switching [data-i18n]{
+  transition:opacity 140ms ease;
+  opacity:0.35;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{ animation:none; opacity:1; transform:none; }
+  .card, .connect a, .cta, .lang-pill, [data-i18n]{ transition:none; }
+  html{ scroll-behavior:auto; }
+}
+
+/* Wider screens: the column simply breathes more. */
+@media (min-width:640px){
+  .wrap{ padding-top:calc(58px + env(safe-area-inset-top)); }
+  .hero{ padding:40px 0 38px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Language toggle — fixed position, outside page flow -->
+<div class="lang-bar" aria-label="Language selector">
+  <div class="lang-toggle" role="group" aria-label="Language / اللغة">
+    <span class="lang-pill" aria-hidden="true"></span>
+    <button type="button" id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+    <button type="button" id="btn-ar" aria-pressed="true" onclick="setLang('ar')">العربية</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero reveal d1">
+    <div class="avatar" aria-hidden="true">
+      <img src="bti-logo-v2.png" alt="Behind The Injury" width="116" height="116">
+    </div>
+
+    <!-- Brand name — same in both languages -->
+    <h1>Behind The Injury</h1>
+
+    <p class="value" data-i18n="value">
+      خطط تأهيل عملية تساعدك تقلل الألم، تستعيد حركتك، وترجع للرياضة بثقة.
+    </p>
+
+    <p class="creator" data-i18n="creator">Created by Amr · Physical Therapy Student</p>
+
+    <p class="cred">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span data-i18n="cred">محتوى موثوق · مبني على أبحاث علمية محكّمة</span>
+    </p>
+  </header>
+
+  <!-- ================= PRODUCTS ================= -->
+  <main>
+    <div class="stack">
+
+      <!-- FLAGSHIP — Bulletproof Ankle -->
+      <a class="card flagship reveal d2" href="https://amrkhalid198.github.io/Landing-page/" target="_blank" rel="noopener noreferrer">
+        <span class="badge" data-i18n="badge">البرنامج الأساسي</span>
+        <div class="card-head">
+          <!-- Program icon: clipboard with checkmark -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1"/>
+            <path d="M9 14l2 2 4-4"/>
+          </svg>
+          <h2>Bulletproof Ankle</h2>
+        </div>
+        <p data-i18n="p1desc">
+          خطة عملية خطوة بخطوة لتقليل الألم، استعادة الحركة، والعودة للرياضة بثقة.
+        </p>
+        <span class="cta">
+          <span data-i18n="p1cta">ابدأ تأهيل الكاحل الآن</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- FREE ASSESSMENT -->
+      <a class="card reveal d3" href="https://amrkhalid198.github.io/Ankle-Assesment/" target="_blank" rel="noopener noreferrer">
+        <div class="card-head">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="8" width="18" height="4" rx="1"/>
+            <path d="M12 8v13M5 12v8a1 1 0 001 1h12a1 1 0 001-1v-8"/>
+            <path d="M12 8c-3 0-4.5-1-4.5-2.5S9 3 10.5 3C12 3 12 5 12 8zm0 0c3 0 4.5-1 4.5-2.5S15 3 13.5 3C12 3 12 5 12 8z"/>
+          </svg>
+          <h2 data-i18n="p2title">قيّم إصابتك مجاناً</h2>
+        </div>
+        <p data-i18n="p2desc">
+          اعرف وضع كاحلك الحالي في دقائق، واحصل على خطوتك الأولى نحو التعافي.
+        </p>
+        <span class="cta">
+          <span data-i18n="p2cta">ابدأ التقييم المجاني</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- FREE GUIDE -->
+      <a class="card reveal d4" href="https://drive.google.com/file/d/1YzODUj5HUcCR8VxG4USOryVPzY7gF05Q/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        <div class="card-head">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="8" width="18" height="4" rx="1"/>
+            <path d="M12 8v13M5 12v8a1 1 0 001 1h12a1 1 0 001-1v-8"/>
+            <path d="M12 8c-3 0-4.5-1-4.5-2.5S9 3 10.5 3C12 3 12 5 12 8zm0 0c3 0 4.5-1 4.5-2.5S15 3 13.5 3C12 3 12 5 12 8z"/>
+          </svg>
+          <h2 data-i18n="p3title">دليلك للتعافي في ٧ أيام</h2>
+        </div>
+        <p data-i18n="p3desc">
+          ٧ أيام من التمارين والنصائح اليومية تساعدك تبدأ تعافيك صح من أول يوم.
+        </p>
+        <span class="cta">
+          <span data-i18n="p3cta">حمّل الدليل المجاني</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- FUTURE CARDS: paste new <a class="card"> blocks here.
+           Use class="card flagship" only for ONE card at a time. -->
+    </div>
+
+    <!-- ================= CONNECT ================= -->
+    <h2 class="section-label reveal d5" data-i18n="connect">تابعني</h2>
+    <nav class="connect reveal d5" aria-label="Social links">
+      <a href="https://www.instagram.com/behindtheinjury1/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M17.2 6.8h.01"/>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/@behindtheinjury1" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2.5" y="6" width="19" height="12.5" rx="3.5"/>
+          <path d="M10.2 9.5l4.6 2.75-4.6 2.75z"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@behindtheinjury" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14.5 4v9.8a3.8 3.8 0 11-3.3-3.77"/>
+          <path d="M14.5 5.5c.7 2 2.3 3.3 4.5 3.5"/>
+        </svg>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="reveal d5">
+    <span class="mark">BEHIND THE INJURY</span>
+    <span> · </span>
+    <span data-i18n="footer">تأهيل رياضي مبني على العلم</span>
+  </footer>
+
+</div>
+
+<script>
+/* ---------- i18n ---------- */
+const T = {
+  ar: {
+    value: "خطط تأهيل عملية تساعدك تقلل الألم، تستعيد حركتك، وترجع للرياضة بثقة.",
+    creator: "Created by Amr · Physical Therapy Student",
+    cred: "محتوى موثوق · مبني على أبحاث علمية محكّمة",
+    badge: "البرنامج الأساسي",
+    p1desc: "خطة عملية خطوة بخطوة لتقليل الألم، استعادة الحركة، والعودة للرياضة بثقة.",
+    p1cta: "ابدأ تأهيل الكاحل الآن",
+    p2title: "قيّم إصابتك مجاناً",
+    p2desc: "اعرف وضع كاحلك الحالي في دقائق، واحصل على خطوتك الأولى نحو التعافي.",
+    p2cta: "ابدأ التقييم المجاني",
+    p3title: "دليلك للتعافي في ٧ أيام",
+    p3desc: "٧ أيام من التمارين والنصائح اليومية تساعدك تبدأ تعافيك صح من أول يوم.",
+    p3cta: "حمّل الدليل المجاني",
+    connect: "تابعني",
+    footer: "تأهيل رياضي مبني على العلم"
+  },
+  en: {
+    value: "Practical rehab plans that help you reduce pain, restore movement, and return to sport with confidence.",
+    creator: "Created by Amr · Physical Therapy Student",
+    cred: "Trusted content · Backed by peer-reviewed research",
+    badge: "Core Program",
+    p1desc: "A step-by-step plan to reduce pain, restore movement, and get back to sport with confidence.",
+    p1cta: "Start Your Ankle Rehab Now",
+    p2title: "Assess Your Injury — Free",
+    p2desc: "Find out where your ankle stands in minutes, and get your first step toward recovery.",
+    p2cta: "Take the Free Assessment",
+    p3title: "Your 7-Day Recovery Guide",
+    p3desc: "7 days of exercises and daily tips to help you start your recovery right from day one.",
+    p3cta: "Download the Free Guide",
+    connect: "Follow Along",
+    footer: "Science-driven sports rehab"
+  }
+};
+
+/* ---------- Sliding pill ---------- */
+function updatePill(){
+  const toggle = document.querySelector('.lang-toggle');
+  const pill = document.querySelector('.lang-pill');
+  const activeBtn = toggle.querySelector('[aria-pressed="true"]');
+  if(!activeBtn || !pill) return;
+
+  requestAnimationFrame(()=>{
+    pill.style.left = activeBtn.offsetLeft + 'px';
+    pill.style.width = activeBtn.offsetWidth + 'px';
+  });
+}
+
+/* ---------- Language switching ---------- */
+function setLang(lang){
+  const html = document.documentElement;
+
+  // Brief fade-out for smooth text transition
+  document.body.classList.add('lang-switching');
+
+  setTimeout(()=>{
+    html.lang = lang;
+    html.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+    });
+
+    document.getElementById('btn-ar').setAttribute('aria-pressed', String(lang === 'ar'));
+    document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+
+    // Persist preference
+    try { localStorage.setItem('bti-lang', lang); } catch(e){}
+
+    // Update pill position after direction change settles
+    requestAnimationFrame(()=>{
+      updatePill();
+      // Fade text back in
+      setTimeout(()=> document.body.classList.remove('lang-switching'), 30);
+    });
+  }, 140);
+}
+
+/* ---------- Init ---------- */
+(function(){
+  // Arabic first. Restore saved preference if exists.
+  let lang = 'ar';
+  try { lang = localStorage.getItem('bti-lang') || 'ar'; } catch(e){}
+  if (lang !== 'ar' && lang !== 'en') lang = 'ar';
+
+  // Apply immediately without transition
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+  });
+
+  document.getElementById('btn-ar').setAttribute('aria-pressed', String(lang === 'ar'));
+  document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+
+  // Position pill once fonts are ready
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updatePill);
+  } else {
+    window.addEventListener('load', updatePill);
+  }
+
+  window.addEventListener('resize', updatePill);
+})();
+</script>
+</body>
+</html>
