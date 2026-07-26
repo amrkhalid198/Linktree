@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Behind The Injury — Bulletproof Ankle</title>
+<title>Behind The Injury — Bulletproof Ankle Program</title>
 <meta name="description" content="تأهيل الإصابات الرياضية بمنهج مبني على الأدلة العلمية. برامج تأهيل، تقييم مجاني، ودليل تعافي مجاني.">
 <meta name="theme-color" content="#0C0E10">
 
@@ -160,15 +160,23 @@ html[lang="en"] body{ line-height:1.6; }
   color:var(--text-3);
   font-family:var(--font-body);
 }
+/* Centred block, icon inline with the text. As a flex row the icon was
+   stranded at the far edge once the sentence wrapped to two lines. */
 .hero .cred{
   margin-top:12px;
   font-size:12.5px;
   color:var(--text-3);
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
+  display:block;
+  text-align:center;
+  text-wrap:balance;
 }
-.hero .cred svg{ width:13px; height:13px; stroke:var(--text-3); }
+.hero .cred svg{
+  width:13px; height:13px;
+  display:inline-block;
+  vertical-align:-2px;
+  margin-inline-end:7px;
+  stroke:var(--text-3);
+}
 
 /* ---------- Product stack ---------- */
 /* Future cards: duplicate an <a class="card"> block inside .stack. Hierarchy
@@ -431,14 +439,14 @@ footer .mark{
       خطط تأهيل عملية تساعدك تقلل الألم، تستعيد حركتك، وترجع للرياضة بثقة.
     </p>
 
-    <p class="creator" data-i18n="creator">Created by Amr · Physical Therapy Student</p>
+    <p class="creator" data-i18n="creator">Created by Amr · Physical therapist</p>
 
     <p class="cred">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z"/>
         <path d="M9 12l2 2 4-4"/>
       </svg>
-      <span data-i18n="cred">محتوى موثوق · مبني على أبحاث علمية محكّمة</span>
+      <span data-i18n="cred">محتوى موثوق · مبني على أبحاث علمية</span>
     </p>
   </header>
 
@@ -456,7 +464,7 @@ footer .mark{
             <rect x="8" y="2" width="8" height="4" rx="1"/>
             <path d="M9 14l2 2 4-4"/>
           </svg>
-          <h2>Bulletproof Ankle</h2>
+          <h2>Bulletproof Ankle Program</h2>
         </div>
         <p data-i18n="p1desc">
           خطة عملية خطوة بخطوة لتقليل الألم، استعادة الحركة، والعودة للرياضة بثقة.
@@ -553,8 +561,8 @@ footer .mark{
 const T = {
   ar: {
     value: "خطط تأهيل عملية تساعدك تقلل الألم، تستعيد حركتك، وترجع للرياضة بثقة.",
-    creator: "Created by Amr · Physical Therapy Student",
-    cred: "محتوى موثوق · مبني على أبحاث علمية محكّمة",
+    creator: "Created by Amr · Physical therapist",
+    cred: "محتوى موثوق · مبني على أبحاث علمية",
     badge: "البرنامج الأساسي",
     p1desc: "خطة عملية خطوة بخطوة لتقليل الألم، استعادة الحركة، والعودة للرياضة بثقة.",
     p1cta: "ابدأ تأهيل الكاحل الآن",
@@ -569,7 +577,7 @@ const T = {
   },
   en: {
     value: "Practical rehab plans that help you reduce pain, restore movement, and return to sport with confidence.",
-    creator: "Created by Amr · Physical Therapy Student",
+    creator: "Created by Amr · Physical therapist",
     cred: "Trusted content · Backed by peer-reviewed research",
     badge: "Core Program",
     p1desc: "A step-by-step plan to reduce pain, restore movement, and get back to sport with confidence.",
