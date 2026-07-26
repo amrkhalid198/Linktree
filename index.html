@@ -130,6 +130,8 @@ html[lang="en"] body{ line-height:1.6; }
   display:grid; place-items:center;
   overflow:hidden;
 }
+/* Wrapper is presentational only — let the <img> stay the grid item */
+.avatar picture{ display:contents; }
 .avatar img{
   width:100%; height:100%;
   object-fit:cover;
@@ -416,7 +418,10 @@ footer .mark{
   <!-- ================= HERO ================= -->
   <header class="hero reveal d1">
     <div class="avatar" aria-hidden="true">
-      <img src="bti-logo-v2.png" alt="Behind The Injury" width="116" height="116">
+      <picture>
+        <source srcset="bti-logo-v2.webp" type="image/webp">
+        <img src="bti-logo-v2.jpg" alt="Behind The Injury" width="116" height="116" fetchpriority="high" decoding="async">
+      </picture>
     </div>
 
     <!-- Brand name — same in both languages -->
