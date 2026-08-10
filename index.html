@@ -308,7 +308,7 @@ html[lang="en"] .badge{ text-transform:uppercase; letter-spacing:.09em; }
   font-size:22px;
   font-weight:800;
   line-height:1.3;
-  /* Product name stays Latin in both languages */
+  /* Tightening suits the Latin name; harmless on the Arabic one */
   letter-spacing:-.015em;
 }
 .card.flagship p{ font-size:15px; }
@@ -337,7 +337,7 @@ html[lang="en"] .badge{ text-transform:uppercase; letter-spacing:.09em; }
   font-weight:700;
   color:var(--text-3);
   text-align:center;
-  margin:44px 0 16px;
+  margin:26px 0 14px;
 }
 html[lang="en"] .section-label{ text-transform:uppercase; letter-spacing:.1em; }
 
@@ -443,7 +443,7 @@ html[lang="en"] .section-label{ text-transform:uppercase; letter-spacing:.1em; }
             <rect x="8" y="2" width="8" height="4" rx="1"/>
             <path d="M9 14l2 2 4-4"/>
           </svg>
-          <h2>Bulletproof Ankle Program</h2>
+          <h2 data-i18n="p1title">برنامج تأهيل الكاحل</h2>
         </div>
         <p data-i18n="p1desc">
           خطة عملية خطوة بخطوة لتقليل الألم، استعادة الحركة، والعودة للرياضة بثقة.
@@ -555,6 +555,7 @@ const T = {
     creator: "Created by Amr · Physical therapist",
     cred: "محتوى موثوق · مبني على أبحاث علمية",
     badge: "البرنامج الأساسي",
+    p1title: "برنامج تأهيل الكاحل",
     p1desc: "خطة عملية خطوة بخطوة لتقليل الألم، استعادة الحركة، والعودة للرياضة بثقة.",
     p1cta: "ابدأ تأهيل الكاحل الآن",
     p2title: "اختبر الكاحل مجاناً",
@@ -570,6 +571,7 @@ const T = {
     creator: "Created by Amr · Physical therapist",
     cred: "Trusted content · Backed by peer-reviewed research",
     badge: "Core Program",
+    p1title: "Bulletproof Ankle Program",
     p1desc: "A step-by-step plan to reduce pain, restore movement, and get back to sport with confidence.",
     p1cta: "Start Your Ankle Rehab Now",
     p2title: "Test Your Ankle",
